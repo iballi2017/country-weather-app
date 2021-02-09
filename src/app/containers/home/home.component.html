@@ -1,0 +1,85 @@
+<h1 class="text-center my-5">Country Weather</h1>
+
+<div class="container">
+
+    <!-- country form -->
+    <section>
+        <form action="#" class="text-center">
+            <mat-form-field appearance="fill">
+                <mat-label>Select a country</mat-label>
+                <mat-select #country (selectionChange)="handleGetWeather($event)">
+                    <mat-option *ngFor="let country of countries" [value]="country.name">
+                        {{country.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </form>
+    </section>
+
+    <!-- weather info output -->
+    <div class="alert alert-info text-center" *ngIf="!weatherData && !errorText">
+        Select a Country
+    </div>
+
+    <!-- error message -->
+    <div class="alert alert-danger text-center" *ngIf="errorText">
+        "{{errorText}}"<br/><span>Try again later or select another country.</span>
+    </div>
+
+    <section *ngIf="weatherData && !errorText">
+        <h3 class="text-center">Current weather</h3>
+        <div class="row">
+            <div class="col-12 col-md-6">
+                <h1>{{weatherData!.name}}&nbsp;<span>'{{weatherData!.sys.country}}'</span></h1>
+                <!-- <h4><strong>Data receiving time:</strong>&nbsp;{{weatherData!.dt }}</h4> -->
+                <h4><strong>Data receiving time:</strong>&nbsp;{{weatherData!.dt / 86400000 | convertDate}}&nbsp;days ago</h4>
+                <!-- <h4><strong>Data receiving time:</strong>&nbsp;{{weatherData!.dt / 86400000 }}</h4> -->
+                <div class="text-center">
+                    <img src="http://openweathermap.org/img/wn/{{weatherData!.weather[0].icon}}@2x.png"
+                        alt="{{weatherData!.weather[0].description}}" class="weather-img">
+                        <p>{{weatherData!.weather[0].description}}</p>
+                        <p><strong>Clouds:</strong>&nbsp;{{weatherData!.clouds.all}}%</p>
+                        <p><strong>Timezone:</strong>&nbsp;{{weatherData!.timezone}}</p>
+                </div>
+
+            </div>
+            <div class="col-12 col-md-6">
+                <table class="table">
+                    <tbody>
+                      <tr>
+                        <th scope="row">
+                            <dl>
+                                <dt><u>Wind</u></dt>
+                                <dd><strong>Speed</strong>:&nbsp;{{weatherData!.wind.speed}}<span>m/s</span></dd>
+                                <dd><strong>Degree</strong>:&nbsp;{{weatherData!.wind.deg}}<sup>0</sup></dd>
+                                <dt><u>Coordinates</u></dt>
+                                <dd *ngIf="weatherData!.coord"><strong>Longitude</strong>:&nbsp;{{weatherData!.coord.lon}}<sup>0</sup></dd>
+                                <dd *ngIf="weatherData!.coord"><strong>Latitude</strong>:&nbsp;{{weatherData!.coord.lat}}<sup>0</sup></dd>
+                                <!-- <dt><u>Date</u></dt>
+                                <dl *ngIf="weatherData!.dt">{{weatherData!.dt | convertDate}}</dl>
+                                <span *ngIf="weatherData!.dt">{{weatherData!.dt}}</span> -->
+                            </dl>
+                        </th>
+                        <td>
+                            <dl>
+                                <dt><u>Main</u></dt>
+                                <dd *ngIf="weatherData!.main.temp"><strong>Temperature</strong>:&nbsp;{{weatherData!.main.temp}}<sup>0</sup>K</dd>
+                                <dd *ngIf="weatherData!.main.pressure"><strong>Pressure</strong>:&nbsp;{{weatherData!.main.pressure}}hPa</dd>
+                                <dd *ngIf="weatherData!.main.humidity"><strong>Humidity</strong>:&nbsp;{{weatherData!.main.humidity}}%</dd>
+                                <dd *ngIf="weatherData!.main.sea_level"><strong>Sea Level</strong>:&nbsp;{{weatherData!.main.sea_level}}hPa</dd>
+                                <dd *ngIf="weatherData!.main.grnd_level"><strong>Ground Level</strong>:&nbsp;{{weatherData!.main.grnd_level}}hPa</dd>
+                            </dl>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+            </div>
+        </div>
+    </section>
+
+    <section class="map-section mb-5" *ngIf="weatherData && !errorText">
+        <agm-map [latitude]="lat" [longitude]="lng">
+            <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+        </agm-map>
+    </section>
+</div>

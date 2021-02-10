@@ -13,7 +13,7 @@ export class WeatherService {
   .set('content-type', 'application/json')
   .set('Access-Control-Allow-Origin', '*');
  
-  constructor(private _http: HttpClient) { }
+  constructor(private _http: HttpClient) {  }
 
   getWeather(country){
     // console.log(weatherBaseUrl + country + queryAPIjoiner + 'ed2293245a7f976aefe7f59cfd85af89')
@@ -21,7 +21,7 @@ export class WeatherService {
     return this._http.get(weatherBaseUrl + country + queryAPIjoiner);
   }
 
-  getData(country){
-    return this._http.get('http://api.openweathermap.org/data/2.5/weather?q=' + country + '&appid=ed2293245a7f976aefe7f59cfd85af89');
-  }
+  // getData(country){
+  //   return this._http.get('https://api.openweathermap.org/data/2.5/weather?q=' + country + '&appid=ed2293245a7f976aefe7f59cfd85af89');
+  // }
 }

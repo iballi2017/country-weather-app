@@ -16,6 +16,7 @@ export class WeatherService {
   constructor(private _http: HttpClient) {  }
 
   getWeather(country){
+    // console.log(weatherBaseUrl);
     // console.log(weatherBaseUrl + country + queryAPIjoiner + 'ed2293245a7f976aefe7f59cfd85af89')
     // return weatherBaseUrl + country + queryAPIjoiner + 'ed2293245a7f976aefe7f59cfd85af89';
     return this._http.get(weatherBaseUrl + country + queryAPIjoiner);

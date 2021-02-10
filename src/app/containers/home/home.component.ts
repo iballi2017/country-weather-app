@@ -35,7 +35,7 @@ export class HomeComponent implements OnInit {
 
   handleGetWeather(e){
     this._weatherSvc.getWeather(e.value).subscribe((response:any)=>{
-      console.log(response);
+      // console.log(response);
       // console.log(response.name);
       this.weatherData = response
       // console.log(this.weatherData.sys.country);

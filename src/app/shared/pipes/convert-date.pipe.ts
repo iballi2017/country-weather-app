@@ -10,8 +10,11 @@ export class ConvertDatePipe implements PipeTransform {
   // }
 
   transform(value: any) {
-    // console.log(value);
-    var date = value.toFixed(0)
+    const t = new Date(value);
+    // const date = t.toUTCString() + " " + t.toLocaleTimeString("en-US");
+    const date = t.toLocaleDateString("en-US") + " " + t.toLocaleTimeString("en-US")
+    // console.log(t.toLocaleTimeString("en-US"));
+    // console.log(value)
     // console.log(date)
     return date
   }

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogComponent } from '../dialog/dialog.component';
 
 @Component({
   selector: 'main-navigation',
@@ -7,9 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainNavigationComponent implements OnInit {
 
-  constructor() { }
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit(): void {
+  }
+
+  
+  openDialog() {
+    const dialogRef = this.dialog.open(DialogComponent, {
+      width: '100%',
+      maxWidth: '600px'
+      // data: {name: this.name, animal: this.animal}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      // console.log(`Dialog result: ${result}`);
+    });
   }
 
 }

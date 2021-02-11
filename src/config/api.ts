@@ -2,6 +2,8 @@ import { environment } from 'src/environments/environment';
 
 export const countryBaseUrl = environment.production ? 'https//whateverapi.com/api/' : 'https://restcountries.eu/rest/v2/';
 export const allCountries = countryBaseUrl + 'all';
+export const majorCities = environment.production ? 'https//whateverapi.com/api/' : 'http://worldtimeapi.org/api/timezone/';
+export const majorCitiesTimezones = majorCities + 'timezone/';
 
 
 export const weatherBaseUrl = environment.production ? 'https//whateverapi.com/api/' : 'https://api.openweathermap.org/data/2.5/weather?q=';

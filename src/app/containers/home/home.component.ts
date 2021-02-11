@@ -13,11 +13,12 @@ export class HomeComponent implements OnInit {
   @ViewChild('country', {static : true}) country : TemplateRef<string>;
   weatherData: any;
   url=weatherBaseUrl;
-  // lat = 51.678418;
-  // lng = 7.809007;
   lng;
   lat;
   errorText: any;
+  tempCelc;
+  tempCelcMin: string;
+  tempCelcMax: string;
 
   constructor(private _countrySvc: CountryService, private _weatherSvc: WeatherService) { }
 
@@ -42,6 +43,11 @@ export class HomeComponent implements OnInit {
       this.lng = this.weatherData!.coord.lon
       this.lat = this.weatherData!.coord.lat
       this.errorText ="";
+      this.tempCelc = (this.weatherData!.main.temp-273.15).toFixed(2);
+      this.tempCelcMin = (this.weatherData!.main.temp_min-273.15).toFixed(2);
+      this.tempCelcMax = (this.weatherData!.main.temp_max-273.15).toFixed(2);
+      // console.log(this.tempCelc);
+      // console.log(typeof(this.tempCelc));
     },
     (error=>{
       // console.log(error)
@@ -60,10 +66,4 @@ export class HomeComponent implements OnInit {
   //   {value: 'ghana-1', viewValue: 'Ghana'},
   //   {value: 'ivorycoast-2', viewValue: 'Ivory coast'}
   // ];
-}
-
-
-interface Country {
-  value: string;
-  viewValue: string;
 }

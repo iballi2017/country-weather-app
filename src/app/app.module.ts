@@ -11,14 +11,19 @@ import { MainNavigationComponent } from './components/main-navigation/main-navig
 import { HttpClientModule } from '@angular/common/http';
 import { ConvertDatePipe } from './shared/pipes/convert-date.pipe';
 import { AgmCoreModule } from '@agm/core';
+import { MathFixedPipe } from './shared/pipes/math-fixed.pipe';
+import { DialogComponent } from './components/dialog/dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     MainNavigationComponent,
-    ConvertDatePipe
+    ConvertDatePipe,
+    MathFixedPipe,
+    DialogComponent
   ],
+  entryComponents: [DialogComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

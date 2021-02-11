@@ -1,0 +1,77 @@
+<div class="text-right"><button mat-flat-button (click)="closeDialog()"><span class="material-icons">
+            close
+        </span>
+    </button>
+</div>
+<h2 class="text-center">World Time</h2>
+<h4 class="text-right" *ngIf="cityData">Your IP Address: {{cityData.client_ip}}</h4>
+<div class="container">
+
+    <section>
+        <form action="#" class="text-center">
+            <mat-form-field appearance="fill">
+                <mat-label>Select a major city</mat-label>
+                <mat-select #city (selectionChange)="handleGetCities($event)">
+                    <mat-option *ngFor="let city of cities" [value]="city">
+                        {{city}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </form>
+        <div class="alert alert-info text-center" *ngIf="!cityData && !errorText">
+            Select a city
+        </div>
+
+        <!-- error message -->
+        <div class="alert alert-danger text-center" *ngIf="errorText">
+            "{{errorText}}"<br /><span>Try again later or select another city.</span>
+        </div>
+
+    </section>
+    <!-- country data output -->
+    <section class="city-data" *ngIf="cityData">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <tbody>
+                    <tr>
+                        <td>
+                            <ul>
+                                <li>
+                                    <strong>Number of weeks:</strong>&nbsp;{{cityData.week_number}}
+                                </li>
+                                <li>
+                                    <strong>Day of week:</strong>&nbsp;{{cityData.day_of_week}}
+                                </li>
+                                <li>
+                                    <strong>Day of year:</strong>&nbsp;{{cityData.day_of_year}}
+                                </li>
+                            </ul>
+                        </td>
+                        <td>
+                            <ul>
+                                <li>
+                                    <strong>Date and time:</strong>&nbsp;<br />{{cityData.datetime | convertDate}}
+                                </li>
+                                <li>
+                                    <strong>UTC date and time:</strong>&nbsp;<br />{{cityData.utc_datetime}}
+                                </li>
+                                <li>
+                                    <strong>UTC offset:</strong>&nbsp;{{cityData.utc_offset}}
+                                </li>
+                                <li>
+                                    <strong>Raw offset:</strong>&nbsp;{{cityData.raw_offset}}
+                                </li>
+                                <li>
+                                    <strong>Unix time:</strong>&nbsp;{{cityData.unixtime}}
+                                </li>
+                                <li>
+                                    <strong>Timezone Abbr:</strong>&nbsp;{{cityData.abbreviation}}
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</div>

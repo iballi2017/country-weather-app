@@ -19,12 +19,9 @@ export class MainNavigationComponent implements OnInit {
     const dialogRef = this.dialog.open(DialogComponent, {
       width: '100%',
       maxWidth: '600px'
-      // data: {name: this.name, animal: this.animal}
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      // console.log(`Dialog result: ${result}`);
-    });
+    dialogRef.afterClosed().subscribe(result => {});
   }
 
 }

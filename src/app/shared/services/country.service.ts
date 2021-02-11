@@ -8,11 +8,8 @@ import { handleError } from 'src/config/errorResponse';/* Importing errorRespons
   providedIn: 'root'
 })
 export class CountryService {
-
   constructor(private _http: HttpClient) { }
-
   getCountries(){
-    // console.log(allCountries)
     return this._http.get(allCountries)
     .pipe(
       retry(3),

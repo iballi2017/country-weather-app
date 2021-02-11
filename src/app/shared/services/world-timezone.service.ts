@@ -8,11 +8,8 @@ import { handleError } from 'src/config/errorResponse';/* Importing errorRespons
   providedIn: 'root'
 })
 export class WorldTimezoneService {
-
   constructor(private _http: HttpClient) { }
-
   getTimeCities(){
-    // console.log(majorCities);
     return this._http.get(majorCities)
     .pipe(
       retry(3),
